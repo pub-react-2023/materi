@@ -6,25 +6,32 @@
 - [Daftar isi](#daftar-isi)
 - [Sekilas tentang React](#sekilas-tentang-react)
 - [JavaScript](#javascript)
-  - [JavaScript dasar](#javascript-dasar)
+  - [Function](#function)
     - [Anonymous function](#anonymous-function)
     - [Arrow function](#arrow-function)
-  - [JavaScript modern](#javascript-modern)
     - [Callback function](#callback-function)
-    - [Method-method pada array](#method-method-pada-array)
+    - [Rest parameter](#rest-parameter)
+  - [Object](#object)
+  - [Array](#array)
+    - [Method-method array](#method-method-array)
       - [`map()`](#map)
       - [`filter()`](#filter)
       - [`find()`](#find)
+      - [`reduce()`](#reduce)
     - [Spread syntax (`...`)](#spread-syntax-)
-    - [Destructuring assignment](#destructuring-assignment)
-      - [Array destructuring](#array-destructuring)
-      - [Object destructuring](#object-destructuring)
-    - [Conditional (ternary) operator](#conditional-ternary-operator)
-    - [Logical operator](#logical-operator)
-      - [AND (`&&`)](#and-)
-      - [OR (`||`)](#or-)
-    - [Optional chaining](#optional-chaining)
-  - [JavaScript asinkron](#javascript-asinkron)
+  - [Destructuring assignment](#destructuring-assignment)
+    - [Array destructuring](#array-destructuring)
+    - [Object destructuring](#object-destructuring)
+  - [String](#string)
+    - [Template literal](#template-literal)
+  - [Conditional (ternary) operator](#conditional-ternary-operator)
+  - [Binary logical operator](#binary-logical-operator)
+    - [AND (`&&`)](#and-)
+    - [OR (`||`)](#or-)
+    - [Nullish coalescing (`??`)](#nullish-coalescing-)
+  - [Optional chaining (`.?`)](#optional-chaining-)
+  - [ES Module dan sintaks impor/ekspor](#es-module-dan-sintaks-imporekspor)
+  - [Asinkron](#asinkron)
     - [Callback](#callback)
     - [`Promise`](#promise)
     - [`async` dan `await`](#async-dan-await)
@@ -69,11 +76,11 @@ Sebelum belajar React, kita harus memahami dulu tentang:
 
 # JavaScript
 
-## JavaScript dasar
-
 Sebelum belajar React, kita harus terlebih dahulu memahami metode dan konsep dasar JavaScript, seperti variabel, tipe data, decision, loop, array, function, dll.
 
-Semua itu terlalu dasar untuk dijelaskan di materi ini. Namun ada 2 hal dasar yang mungkin kita lewatkan, yaitu anonymous function dan arrow function.
+React dibangun menggunakan fitur JavaScript modern. Ada beberapa konsep JavaScript modern yang perlu kita ketahui sebelum belajar React.
+
+## Function
 
 ### Anonymous function
 
@@ -144,10 +151,6 @@ welcome("Anggi Permana");
 // hasil return: Selamat datang Anggi Permana
 ```
 
-## JavaScript modern
-
-React dibangun menggunakan fitur JavaScript modern. Ada beberapa konsep JavaScript modern yang perlu kita ketahui sebelum belajar React.
-
 ### Callback function
 
 Callback function adalah function yang diteruskan ke function lain sebagai argumen, yang kemudian dipanggil di dalamnya.
@@ -171,13 +174,39 @@ fungsi1(fungsi2);
 // Hai
 ```
 
-### Method-method pada array
+### Rest parameter
 
-Method adalah function dari sebuah objek atau class. Array memiliki banyak method, tapi ada 3 method yang penting untuk dipelajari sebelum belajar React, yaitu `map()`, `filter()`, dan `find()`.
+Sintaks rest parameter (parameter lainnya/sisa) memungkinkan suatu fungsi untuk menerima argumen dalam jumlah tak terbatas sebagai array.
+
+Rest parameter dapat dibuat dengan menambahkan `...` di sebelum parameter terakhir.
+
+Contoh:
+
+```js
+function fungsi1(a, b, ...numbers) {
+  console.log(a);
+  console.log(b);
+  console.log(numbers);
+}
+
+fungsi1(1, 2, 3, 4, 5);
+// output:
+// 1
+// 2
+// [ 3, 4, 5 ]
+```
+
+## Object
+
+## Array
+
+### Method-method array
+
+Method adalah function dari sebuah objek atau class. Array memiliki banyak method, tapi ada 3 method yang penting untuk dipelajari sebelum belajar React, yaitu `map()`, `filter()`, `find()`, dan `reduce()`.
 
 #### `map()`
 
-Method `map()` mengembalikan array baru yang berisi sekumpulan nilai baru untuk tiap-tiap elemennya.
+Method `map()` mengembalikan array baru yang berisi kumpulan nilai baru untuk tiap-tiap elemennya.
 
 Method `map()` membutuhkan argumen berupa function yang mengembalikan nilai baru tersebut.
 
@@ -209,7 +238,7 @@ console.log(newPeople);
 
 #### `find()`
 
-Method `find()` mengembalikan elemen pertama dari array yang memenuhi kondisi. Jika tidak ada nilai yang memenuhi kondisi, maka akan mengembalikan `undefined`.
+Method `find()` mengembalikan elemen array yang pertama memenuhi kondisi. Jika tidak ada nilai yang memenuhi kondisi, maka akan mengembalikan `undefined`.
 
 ```js
 const numbers = [5, 12, 8, 130, 44];
@@ -218,6 +247,8 @@ console.log(found);
 
 // output: 12
 ```
+
+#### `reduce()`
 
 ### Spread syntax (`...`)
 
@@ -233,11 +264,11 @@ console.log(newNumbers);
 // output: [ 0, 1, 2, 12 ]
 ```
 
-### Destructuring assignment
+## Destructuring assignment
 
-Sintaks destructuring assignment adalah pernyataan untuk mengeluarkan nilai dari array atau properti dari objek untuk dimasukkan ke variabel lain.
+Sintaks destructuring assignment adalah pernyataan untuk mengeluarkan nilai dari array atau properti dari objek untuk dimasukkan ke beberapa variabel.
 
-#### Array destructuring
+### Array destructuring
 
 ```js
 let a, b;
@@ -250,7 +281,7 @@ console.log(b);
 // output: 20
 ```
 
-#### Object destructuring
+### Object destructuring
 
 ```js
 let mahasiswa = {
@@ -267,7 +298,11 @@ console.log(umur);
 // output: 20
 ```
 
-### Conditional (ternary) operator
+## String
+
+### Template literal
+
+## Conditional (ternary) operator
 
 Conditional operator atau ternary operator adalah operator untuk membuat keputusan dan memilih di antara dua expression berdasarkan suatu kondisi.
 
@@ -288,11 +323,17 @@ console.log(tagihan(null));
 // output: Rp150.000
 ```
 
-### Logical operator
+## Binary logical operator
 
-Logical operator (operator logika) terdiri dari AND (`&&`) dan OR (`||`).
+Binary logical operator (operator logika biner) adalah operator yang mengembalikan nilai boolean.
 
-#### AND (`&&`)
+Binary logical operator ada 3, yaitu:
+
+1. AND (`&&`)
+2. OR (`||`)
+3. Nullish coalescing (`??`)
+
+### AND (`&&`)
 
 Jika kiri bernilai `false`, `null`, atau `undefined`, maka akan mengembalikan nilai itu sendiri (nilai kiri).
 
@@ -301,9 +342,9 @@ Jika kiri bernilai selain nilai-nilai di atas, maka akan mengembalikan nilai kan
 Contoh:
 
 ```js
-let nama = null;
+let nama = false;
 console.log(nama && "Agus");
-// output: null
+// output: false
 ```
 
 ```js
@@ -312,9 +353,29 @@ console.log(nama && "Agus");
 // output: Agus
 ```
 
-#### OR (`||`)
+### OR (`||`)
 
 Jika kiri bernilai `false`, `null`, atau `undefined`, maka akan mengembalikan nilai kanan.
+
+Jika kiri bernilai selain nilai-nilai di atas, maka akan mengembalikan nilai itu sendiri (nilai kiri).
+
+Contoh:
+
+```js
+let nama = false;
+console.log(nama || "Agus");
+// output: Agus
+```
+
+```js
+let nama = "Farhan";
+console.log(nama || "Agus");
+// output: Farhan
+```
+
+### Nullish coalescing (`??`)
+
+Jika kiri bernilai `null` atau `undefined`, maka akan mengembalikan nilai kanan.
 
 Jika kiri bernilai selain nilai-nilai di atas, maka akan mengembalikan nilai itu sendiri (nilai kiri).
 
@@ -332,7 +393,7 @@ console.log(nama || "Agus");
 // output: Farhan
 ```
 
-### Optional chaining
+## Optional chaining (`.?`)
 
 Operator optional chaining (`?.`) digunakan untuk mencegah pembacaan nilai properti jika objeknya tidak ada, sehingga tidak akan terjadi error.
 
@@ -353,7 +414,9 @@ console.log(mahasiswa.programStudi?.nama);
 // output: undefined
 ```
 
-## JavaScript asinkron
+## ES Module dan sintaks impor/ekspor
+
+## Asinkron
 
 Asynchronous programming (pemrograman asinkron) adalah cara agar program dapat memulai tugas yang berpotensi berjalan lama dan masih dapat responsif terhadap peristiwa lain saat tugas itu berjalan, daripada harus menunggu sampai tugas itu selesai.
 
