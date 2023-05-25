@@ -1,27 +1,54 @@
 # **Materi 1: JavaScript, Node.js, `npm`, dan `pnpm`**
 
+# Silabus
+
+| Pertemuan | Materi                                                           |
+| --------- | ---------------------------------------------------------------- |
+| 1         | JavaScript, Node.js, `npm`, dan `pnpm`                           |
+| 2         | React, Vite, komponen, dan JSX                                   |
+| 3         | Menambahkan style (CSS) dan menampilkan data (kurung kurawal)    |
+| 4         | Render kondisional (operator ternary dan logical)                |
+| 5         | Render list (method `map()` array)                               |
+| 6         | Event dan `useState()`                                           |
+| 7         | Sharing data antarkomponen (`props`)                             |
+| 8         | React Router dan deployment (Vercel)                             |
+| **9**     | **UTS**                                                          |
+| 10        | Tailwind CSS                                                     |
+| 11        | Memperdalam event dan `useState()` (memperbarui objek dan array) |
+| 12        | `useReducer()` dan `useContext()`                                |
+| 13        | `useRef()` dan `useEffect()`                                     |
+| 14        | REST API (Express), CRUD, dan deployment (Vercel)                |
+| 15        | Basis data (Supabase, PostgreSQL) dan `.env`                     |
+| 16        | Otentikasi (JWT, cookies, dan hash kata sandi)                   |
+| 17        | TypeScript                                                       |
+| **18**    | **Projekan**                                                     |
+
 # Daftar isi
 
 - [**Materi 1: JavaScript, Node.js, `npm`, dan `pnpm`**](#materi-1-javascript-nodejs-npm-dan-pnpm)
+- [Silabus](#silabus)
 - [Daftar isi](#daftar-isi)
 - [Sekilas tentang React](#sekilas-tentang-react)
-- [JavaScript](#javascript)
+- [JavaScript modern](#javascript-modern)
   - [Function](#function)
     - [Anonymous function](#anonymous-function)
     - [Arrow function](#arrow-function)
     - [Callback function](#callback-function)
-    - [Rest parameter](#rest-parameter)
+    - [Rest parameter (`...`)](#rest-parameter-)
   - [Object](#object)
+    - [Optional chaining (`.?`)](#optional-chaining-)
   - [Array](#array)
     - [Method-method array](#method-method-array)
+      - [`forEach()`](#foreach)
       - [`map()`](#map)
       - [`filter()`](#filter)
       - [`find()`](#find)
       - [`reduce()`](#reduce)
-    - [Spread syntax (`...`)](#spread-syntax-)
   - [Destructuring assignment](#destructuring-assignment)
-    - [Array destructuring](#array-destructuring)
-    - [Object destructuring](#object-destructuring)
+    - [Destructuring pada array](#destructuring-pada-array)
+    - [Destructuring pada object](#destructuring-pada-object)
+    - [Rest property/element](#rest-propertyelement)
+  - [Spread (`...`)](#spread-)
   - [String](#string)
     - [Template literal](#template-literal)
   - [Conditional (ternary) operator](#conditional-ternary-operator)
@@ -29,8 +56,16 @@
     - [AND (`&&`)](#and-)
     - [OR (`||`)](#or-)
     - [Nullish coalescing (`??`)](#nullish-coalescing-)
-  - [Optional chaining (`.?`)](#optional-chaining-)
-  - [ES Module dan sintaks impor/ekspor](#es-module-dan-sintaks-imporekspor)
+  - [Module](#module)
+    - [Konsep](#konsep)
+    - [Module system](#module-system)
+      - [CommonJS module](#commonjs-module)
+      - [ECMAScript module](#ecmascript-module)
+    - [Jenis-jenis module](#jenis-jenis-module)
+      - [Core/built-in module](#corebuilt-in-module)
+      - [Custom module](#custom-module)
+        - [User-defined module](#user-defined-module)
+        - [Third-party module](#third-party-module)
   - [Asinkron](#asinkron)
     - [Callback](#callback)
     - [`Promise`](#promise)
@@ -52,11 +87,9 @@
 
 # Sekilas tentang React
 
-React (sebelumnya "React.js") adalah library JavaScript open source untuk mempermudah kita dalam membangun UI (user interface) web.
+React (sebelumnya bernama "React.js") adalah library JavaScript open source untuk mempermudah kita dalam membangun user interface (UI) web. React memungkinkan kita membangun UI dari bagian-bagian individual yang disebut "component". Sebelum adanya Next.js (framework React), React umumnya digunakan untuk membangun _single-page application_ (SPA), yaitu aplikasi satu halaman.
 
-React pertama kali dirilis pada tahun 2013 oleh Meta (sebelumnya "Facebook").
-
-Selain React, ada beberapa alat (library maupun framework) yang digunakan untuk membangun UI:
+React pertama kali dirilis pada tahun 2013 oleh Meta (saat itu bernama "Facebook"). Selain React, ada beberapa alat (library maupun framework) yang digunakan untuk membangun UI:
 
 - Angular (2010)
 - Vue (2014)
@@ -71,14 +104,26 @@ Sebelum belajar React, kita harus memahami dulu tentang:
 
 - Penggunaan code editor (Visual Studio Code)
 - Dasar-dasar web development (HTML, CSS, dan JavaScript)
-- Konsep-konsep JavaScript modern (ES6)
+- Konsep-konsep JavaScript modern (ES6+)
 - Node.js (opsional)
 
-# JavaScript
+# JavaScript modern
 
-Sebelum belajar React, kita harus terlebih dahulu memahami metode dan konsep dasar JavaScript, seperti variabel, tipe data, decision, loop, array, function, dll.
+Berbagai cara menjalankan JavaScript:
 
-React dibangun menggunakan fitur JavaScript modern. Ada beberapa konsep JavaScript modern yang perlu kita ketahui sebelum belajar React.
+1. Menggunakan file HTML (tag `<script>`).
+2. Konsol JavaScript di browser, kita dapat membukanya dengan mengklik kanan halaman web dan memilih "Inspect" atau menekan `Ctrl+Shift+J`.
+3. Menggunakan runtime JavaScript (Node.js, Deno, Bun, dll.).
+
+Sebelum belajar React, kita harus terlebih dahulu memahami konsep-konsep dasar JavaScript, seperti variabel, tipe data, decision, loop, array, function, dll.
+
+Selain itu, React dibangun menggunakan fitur JavaScript modern. Ada beberapa konsep JavaScript modern yang perlu kita ketahui sebelum belajar React.
+
+JavaScript modern adalah sintaks-sintaks baru JavaScript yang sesuai standar ECMAScript (ES). ECMAScript diperbarui setiap tahun dengan nama versi ES1, ES2, ES3, dst.
+
+Pada tahun 2015, dirilislah ES6 yang memperkenalkan peningkatan yang signifikan pada JavaScript. Mulai versi ES6 inilah JavaScript dianggap modern.
+
+Setelah ES6, versi-versi berikutnya dinamai dengan nama tahun. ES2016 hingga versi terbaru saat ini (ES2023) telah menambahkan fitur-fitur tambahan walaupun tidak sebanyak ES6.
 
 ## Function
 
@@ -108,7 +153,9 @@ fungsi1(function () {
 
 ### Arrow function
 
-Arrow function (fungsi panah) adalah bentuk alternatif yang lebih ringkas dari pernyataan traditional function, tetapi terbatas dan tidak dapat digunakan di semua situasi. Arrow function selalu berupa anonymous function.
+Arrow function (fungsi panah) adalah bentuk alternatif yang lebih ringkas dari pernyataan traditional function, tetapi terbatas dan tidak dapat digunakan di semua situasi.
+
+\*Arrow function selalu berupa anonymous function.
 
 Contoh traditional anonymous function:
 
@@ -126,17 +173,13 @@ Untuk mengubahnya menjadi arrow function, hilangkan kata `function` dan tambahka
 };
 ```
 
-Function di atas hanya memiliki 1 statement, sehingga kurung kurawalnya bisa dihilangkan. Dalam menghapus kurung kurawal, jika statement itu berupa pengembalian (return), maka kata `return` juga harus dihilangkan seperti berikut.
+Function di atas hanya memiliki 1 statement, sehingga kurung kurawalnya dapat dihilangkan. Dalam menghapus kurung kurawal, jika statement itu berupa pengembalian (return), maka kata `return` juga harus dihilangkan:
 
 ```js
 (name) => "Selamat datang " + name;
 ```
 
-Function di atas hanya memiliki 1 parameter, sehingga kurungnya bisa dihilangkan seperti berikut.
-
-```js
-(name) => "Selamat datang " + name;
-```
+\*Karena function di atas hanya memiliki 1 parameter, kurung parameternya dapat dihilangkan (tidak disarankan).
 
 Untuk memberi nama pada arrow function di atas, simpan function itu ke sebuah variabel/konstanta.
 
@@ -144,7 +187,7 @@ Untuk memberi nama pada arrow function di atas, simpan function itu ke sebuah va
 const welcome = (name) => "Selamat datang " + name;
 ```
 
-Untuk memanggil function di atas, kita bisa menggunakan nama variabel/konstantanya.
+Untuk memanggil function di atas, kita dapat menggunakan nama variabel/konstantanya.
 
 ```js
 welcome("Anggi Permana");
@@ -174,7 +217,7 @@ fungsi1(fungsi2);
 // Hai
 ```
 
-### Rest parameter
+### Rest parameter (`...`)
 
 Sintaks rest parameter (parameter lainnya/sisa) memungkinkan suatu fungsi untuk menerima argumen dalam jumlah tak terbatas sebagai array.
 
@@ -198,24 +241,62 @@ fungsi1(1, 2, 3, 4, 5);
 
 ## Object
 
+### Optional chaining (`.?`)
+
+Operator optional chaining (`?.`) digunakan untuk mencegah pembacaan nilai properti jika objeknya tidak ada, sehingga tidak akan terjadi error.
+
+```js
+const mahasiswa = {
+  nama: "Putri Lestari",
+  angkatan: {
+    nama: "Integer",
+  },
+};
+
+console.log(mahasiswa.programStudi.nama);
+// output: error
+// karena programStudi bernilai undefined
+// program mencoba untuk mendapatkan properti 'nama' dari undefined
+
+console.log(mahasiswa.programStudi?.nama);
+// output: undefined
+```
+
 ## Array
 
 ### Method-method array
 
 Method adalah function dari sebuah objek atau class. Array memiliki banyak method, tapi ada 3 method yang penting untuk dipelajari sebelum belajar React, yaitu `map()`, `filter()`, `find()`, dan `reduce()`.
 
-#### `map()`
+#### `forEach()`
 
-Method `map()` mengembalikan array baru yang berisi kumpulan nilai baru untuk tiap-tiap elemennya.
-
-Method `map()` membutuhkan argumen berupa function yang mengembalikan nilai baru tersebut.
+Method `forEach()` digunakan untuk mengiterasi array. Argumen yang diperlukan adalah function dengan parameter yang mewakili elemen pada iterasi saat ini.
 
 Contoh:
 
 ```js
 const numbers = [1, 4, 9, 16];
-const newNumbers = numbers.map((number) => number * 2);
-console.log(newNumbers);
+numbers.forEach((number) => console.log(number));
+
+// output:
+// 1
+// 4
+// 9
+// 16
+```
+
+#### `map()`
+
+Method `map()` mengembalikan array baru yang berisi kumpulan nilai baru untuk tiap-tiap elemennya.
+
+Argumen yang diperlukan adalah function dengan parameter yang mewakili elemen pada iterasi saat ini, serta mengembalikan nilai baru untuk array baru yang dihasilkan nanti.
+
+Contoh:
+
+```js
+const numbers = [1, 4, 9, 16];
+const result = numbers.map((number) => number * 2);
+console.log(result);
 
 // output: [ 2, 8, 18, 32 ]
 ```
@@ -226,12 +307,22 @@ Method `filter()` mengembalikan array baru yang berisi semua elemen yang memenuh
 
 Method `filter()` membutuhkan argumen berupa function yang mengembalikan kondisi untuk menguji tiap-tiap elemen pada array tersebut.
 
-Contoh:
+Contoh 1:
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6];
+const result = numbers.filter((n) => n % 2 === 0);
+console.log(result);
+
+// output: [ 2, 4, 6 ]
+```
+
+Contoh 2:
 
 ```js
 const people = ["Dimas", "Fadli", "Wahyu", "Riyan", "Faisal"];
-const newPeople = people.filter((person) => person.length < 6);
-console.log(newPeople);
+const result = people.filter((person) => person.length < 6);
+console.log(result);
 
 // output: [ 'Dimas', 'Fadli', 'Wahyu', 'Riyan' ]
 ```
@@ -250,25 +341,29 @@ console.log(found);
 
 #### `reduce()`
 
-### Spread syntax (`...`)
-
-Spread syntax (`...`) adalah pernyataan untuk mengeluarkan semua elemen array untuk dimasukkan ke array baru.
-
-Contoh:
+Method `reduce()` mengembalikan satu nilai dari hasil operasi dari elemen-elemen array.
 
 ```js
-let numbers = [0, 1, 2];
-let newNumber = [...numbers, 12];
-console.log(newNumbers);
+const array1 = [1, 2, 3, 4];
 
-// output: [ 0, 1, 2, 12 ]
+// 0 + 1 + 2 + 3 + 4
+const total = array1.reduce((a, b) => a + b, 0);
+
+console.log(total);
+// output: 10
 ```
+
+\*`0` adalah nilai awal
+
+\*`a` adalah nilai total sementara (dimulai dari nilai awal jika ditentukan, jika tidak maka indeks ke-0)
+
+\*`b` adalah nilai saat ini (dimulai dari indeks ke-0 jika nilai awal ditentukan, jika tidak maka indeks ke-1)
 
 ## Destructuring assignment
 
 Sintaks destructuring assignment adalah pernyataan untuk mengeluarkan nilai dari array atau properti dari objek untuk dimasukkan ke beberapa variabel.
 
-### Array destructuring
+### Destructuring pada array
 
 ```js
 let a, b;
@@ -281,7 +376,7 @@ console.log(b);
 // output: 20
 ```
 
-### Object destructuring
+### Destructuring pada object
 
 ```js
 let mahasiswa = {
@@ -296,6 +391,32 @@ console.log(nama);
 
 console.log(umur);
 // output: 20
+```
+
+### Rest property/element
+
+Kita dapat mengakhiri pola destructuring dengan rest property `...rest`. Pola ini akan menyimpan semua properti object atau elemen array yang tersisa ke dalam object atau array baru.
+
+```js
+const { a, ...others } = { a: 1, b: 2, c: 3 };
+console.log(others); // { b: 2, c: 3 }
+
+const [first, ...others2] = [1, 2, 3];
+console.log(others2); // [2, 3]
+```
+
+## Spread (`...`)
+
+Sintaks spread (`...`) adalah pernyataan untuk mengeluarkan semua elemen array untuk dimasukkan ke array baru.
+
+Contoh:
+
+```js
+let numbers = [0, 1, 2];
+let newNumber = [...numbers, 12];
+console.log(newNumbers);
+
+// output: [ 0, 1, 2, 12 ]
 ```
 
 ## String
@@ -383,38 +504,110 @@ Contoh:
 
 ```js
 let nama = null;
-console.log(nama || "Agus");
+console.log(nama ?? "Agus");
 // output: Agus
 ```
 
 ```js
-let nama = "Farhan";
-console.log(nama || "Agus");
-// output: Farhan
+let nama = false;
+console.log(nama ?? "Agus");
+// output: false
 ```
 
-## Optional chaining (`.?`)
+## Module
 
-Operator optional chaining (`?.`) digunakan untuk mencegah pembacaan nilai properti jika objeknya tidak ada, sehingga tidak akan terjadi error.
+Module adalah file berisi kode yang dapat digunakan kembali oleh module lain.
+
+### Konsep
+
+- `import` digunakan untuk menyertakan dan menggunakan module yang disimpan di tempat lain, di sistem file lokal kita atau dari jarak jauh.
+- `export` digunakan untuk menentukan bagian mana dari module kita yang dapat diakses oleh orang lain yang mengimpor module kita.
+
+### Module system
+
+Node.js memiliki dua module system:
+
+1. CommonJS module (cara asli)
+2. ECMAScript module (cara baru, format standar resmi)
+
+#### CommonJS module
+
+Cara mengekspor:
 
 ```js
-const mahasiswa = {
-  nama: "Putri Lestari",
-  angkatan: {
-    nama: "Integer",
-  },
+exports.tambah = function (a, b) {
+  return a + b;
 };
 
-console.log(mahasiswa.programStudi.nama);
-// output: error
-// karena programStudi bernilai undefined
-// program mencoba untuk mendapatkan properti 'nama' dari undefined
-
-console.log(mahasiswa.programStudi?.nama);
-// output: undefined
+exports.kali = function (a, b) {
+  return a * b;
+};
 ```
 
-## ES Module dan sintaks impor/ekspor
+Cara mengimpor:
+
+```js
+const { tambah, kali } = require("./aritmatika.js");
+
+console.log(tambah(3, 4)); // 7
+console.log(kali(5, 3)); // 15
+```
+
+#### ECMAScript module
+
+Cara mengekspor:
+
+```js
+export function tambah(a, b) {
+  return a + b;
+}
+
+export function kali(a, b) {
+  return a * b;
+}
+```
+
+Cara mengimpor:
+
+```js
+import { tambah, kali } from "./aritmatika.js";
+
+console.log(tambah(3, 4)); // 7
+console.log(kali(5, 3)); // 15
+```
+
+### Jenis-jenis module
+
+Ada dua jenis module di Node.js:
+
+1. core/built-in module (modul inti/bawaan)
+2. custom module (modul kustom)
+
+#### Core/built-in module
+
+Core/built-in module (modul inti/bawaan) adalah module yang sudah tersedia di dalam Node.js.
+
+Contoh core module:
+
+- Module `fs`, menyediakan fungsi untuk membaca dan menulis file
+- Module `http`, menyediakan fungsi untuk membuat server dan klien HTTP
+
+#### Custom module
+
+Custom module adalah module yang dibuat oleh developer.
+
+Custom module terbagi menjadi dua macam:
+
+1.  User-defined module (modul buatan pengguna)
+2.  Third-party module (modul pihak-ketiga)
+
+##### User-defined module
+
+User-defined module (modul buatan pengguna) adalah module yang kita buat sendiri untuk mengatur dan menggunakan kembali kode kita sendiri.
+
+##### Third-party module
+
+Third-party module (modul pihak-ketiga) adalah module yang dibuat oleh komunitas dan diterbitkan di npm registry.
 
 ## Asinkron
 
