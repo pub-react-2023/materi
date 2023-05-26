@@ -31,28 +31,72 @@
 - [Pengenalan React](#pengenalan-react)
 - [Vite](#vite)
   - [Menginisialisasi project Vite](#menginisialisasi-project-vite)
+  - [Memahami isi dari template Vite](#memahami-isi-dari-template-vite)
+  - [Menjalankan aplikasi Vite](#menjalankan-aplikasi-vite)
+  - [Memulai dari awal](#memulai-dari-awal)
+- [Hello, universe!](#hello-universe)
 - [Pengenalan JSX](#pengenalan-jsx)
   - [Menyematkan statement (pernyataan) di JSX](#menyematkan-statement-pernyataan-di-jsx)
   - [JSX juga statement](#jsx-juga-statement)
   - [Menentukan atribut dengan JSX](#menentukan-atribut-dengan-jsx)
   - [Menentukan child dengan JSX](#menentukan-child-dengan-jsx)
-- [Rendering element](#rendering-element)
-  - [Merender element ke dalam DOM](#merender-element-ke-dalam-dom)
-  - [Memperbarui element yang dirender](#memperbarui-element-yang-dirender)
-  - [React hanya memperbarui apa yang perlu diperbarui](#react-hanya-memperbarui-apa-yang-perlu-diperbarui)
 - [Component dan property](#component-dan-property)
   - [Merender component](#merender-component)
   - [Menyusun component](#menyusun-component)
 
 # Pengenalan React
 
-React (sebelumnya bernama "React.js") adalah library JavaScript open source untuk mempermudah kita dalam membangun user interface (UI) web. React memungkinkan kita membangun user interface dari bagian-bagian individual yang disebut "component". Sebelum adanya Next.js (framework React), React umumnya digunakan untuk membangun _single-page application_ (SPA), yaitu aplikasi satu halaman.
+React (sebelumnya bernama "React.js") adalah library JavaScript open source untuk mempermudah kita dalam membangun user interface (UI) web.
 
-React memungkinkan kita membangun user interface dari bagian-bagian individual yang disebut "komponen". Kita dapat membuat komponen React sendiri seperti `Thumbnail`, `TombolSuka`, dan `Video`. Kemudian komponen-komponen tersebut dapat kita gabungkan ke seluruh layar, halaman, dan aplikasi yang kita bangun.
+React memungkinkan kita membangun user interface dari bagian-bagian individual yang disebut "komponen". Kita dapat membuat komponen React sendiri seperti `Thumbnail`, `LikeButton`, dan `Video`. Kemudian komponen-komponen tersebut dapat kita gabungkan ke seluruh layar, halaman, dan aplikasi yang kita bangun.
+
+Contoh:
+
+```jsx
+function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </a>
+      <LikeButton video={video} />
+    </div>
+  );
+}
+```
+
+Output:
+
+![](images/react/video.png)
 
 React dirancang untuk memungkinkan kita menggabungkan komponen-komponen yang ditulis oleh orang, tim, dan organisasi lain dengan mudah.
 
 Komponen React sebenarnya adalah function JavaScript. Untuk menampilkan beberapa konten secara kondisional kita dapat menggunakan pernyataan `if`. Untuk menampilkan daftar kita dapat menggunakan method `map()` array. Belajar React sama seperti belajar pemrograman.
+
+```jsx
+function DaftarVideo({ videos, emptyHeading }) {
+  const count = videos.length;
+  let heading = emptyHeading;
+  if (count > 0) {
+    const noun = count > 1 ? "Videos" : "Video";
+    heading = count + " " + noun;
+  }
+  return (
+    <section>
+      <h2>{heading}</h2>
+      {videos.map((video) => (
+        <Video key={video.id} video={video} />
+      ))}
+    </section>
+  );
+}
+```
+
+Output:
+
+![](images/react/video-list.png)
 
 React menggunakan sintaks _markup_ yang disebut "JSX". Ini adalah perluasan sintaks JavaScript yang dipopulerkan oleh React. Sintaks JSX ini membuat komponen React mudah dibuat, dikelola, dan dihapus.
 
@@ -62,35 +106,134 @@ Komponen React menerima data dan mengembalikan apa yang seharusnya muncul di lay
 
 Vite (kata dari bahasa Perancis yang berarti "cepat", dilafalkan `/vit/`, bukan `/vaɪt/`) adalah alat build yang bertujuan untuk memberikan pengalaman pengembangan yang lebih cepat dan lebih ramping (tidak banyak dependensi) untuk project web modern.
 
-Sebelum adanya Vite, developer React biasanya menggunakan `create-react-app` (CRA) untuk membangun project React. Namun setelah kemunculan Vite, hampir semua beralih ke Vite.
+Vite dapat digunakan dengan framework apapun (termasuk React, walaupun sebenarnya React bukan framework, melainkan library).
+
+Sebelum adanya Vite, developer React biasanya menggunakan `create-react-app` (CRA) untuk membangun project React. Namun alat tersebut memiliki banyak masalah performa. Setelah kemunculan Vite, hampir semua developer beralih ke Vite.
 
 ## Menginisialisasi project Vite
 
-Dengan `npm`:
+1. Jalankan perintah:
+
+   ```shell
+   > pnpm create vite
+   ```
+
+   Tunggu sampai proses download selesai.
+
+2. Masukkan nama project, contoh: `vite-project`.
+3. Pilih framework yang ingin kita gunakan, yaitu `React` (gunakan tombol atas-bawah di keyboard lalu enter untuk memilih).
+4. Pilih varian yang ingin kita gunakan, yaitu `JavaScript`.
+
+   `pnpm` akan menghasilkan folder dengan nama sesuai nama project yang kita masukkan tadi. Folder tersebut berisi file-file awal dari template yang kita pilih tadi.
+
+5. Buka folder yang dihasilkan tadi di VS Code.
+
+## Memahami isi dari template Vite
+
+Saat kita menginisialisasi project Vite, kita akan diberi template _starter kit_:
+
+1. Folder `public`, ini adalah folder statis, artinya file-file di dalamnya dapat diakses langsung dari URL. Misalnya file `vite.svg` dapat diakses langsung melalui `http://localhost:5173/vite.svg`.
+
+2. Folder `src`, kita akan fokus ke folder ini, karena file-file di folder inilah yang akan **sering kita ubah**, di sinilah kita akan membuat component-component React.
+
+3. File `.eslintrc.cjs`, yaitu konfigurasi ESLint, ESLint adalah alat untuk memeriksa kesalahan pada kode kita.
+
+4. File `.gitignore`
+
+5. File `index.html`, ini adalah file berisi struktur dasar aplikasi kita, kemungkinan besar kita **tidak akan pernah mengubahnya**.
+
+6. File `package.json`
+
+7. File `vite.config.js`, yaitu konfigurasi Vite, biasanya untuk memasang plugin Vite.
+
+## Menjalankan aplikasi Vite
+
+Jika kita membuka file `package.json`, kita akan melihat beberapa dependensi. Perintah `pnpm create vite` tidak secara otomatis mendownload semua dependensi tersebut.
+
+Kita perlu mendownload semua dependensi tersebut dengan perintah:
 
 ```shell
-$ npm create vite@latest
+> pnpm install
 ```
 
-Dengan `pnpm`:
+Perintah di atas akan mendownload semua dependensi dan menghasilkan folder `node_modules`.
 
-```shell
-$ pnpm create vite
+Sekarang project siap dijalankan:
+
+1. Jalankan perintah `pnpm dev` (ini akan menjalankan script `dev` di `package.json`).
+
+2. Buka link yang muncul di terminal (misalnya http://localhost:5173/) dengan `Ctrl` + klik.
+
+## Memulai dari awal
+
+Template Vite telah memberi kita contoh yang bagus berupa aplikasi React sederhana. Namun kita tidak akan pernah paham cara kerjanya tanpa memulainya dari awal.
+
+Langkah-langkah yang direkomendasikan untuk memulai dari awal (fokus ke folder `src`):
+
+1. Hapus file `App.css` (ini adalah CSS untuk `App.jsx`)
+
+2. Kosongkan isi dari file `index.css` (ini adalah CSS global)
+
+3. Kosongkan isi dari file `App.jsx`
+
+Aplikasi mungkin akan error karena file `main.jsx` mengimpor komponen dari `App.jsx` untuk ditampilkan, sedangkan `App.jsx` telah kita kosongkan. Tapi ini akan segera teratasi setelah kita membuat komponen pertama kita di `App.jsx`.
+
+# Hello, universe!
+
+Sebagai pembukaan, kita akan menyapa alam semesta dengan komponen pertama kita di dalam file `App.jsx`.
+
+Komponen React adalah function yang dinamai dengan `PascalCase` yang mengembalikan markup JSX (sintaks mirip HTML), misalnya bernama `App`:
+
+```jsx
+function App() {
+  return <h1>Hello, universe!</h1>;
+}
 ```
 
-Kemudian ikuti petunjuknya!
+Komponen `App` perlu diekspor karena komponen tersebut perlu diimpor oleh file `main.jsx` untuk ditampilkan:
 
-Perintah di atas akan menghasilkan project berdasarkan template yang kita pilih.
+```jsx
+function App() {
+  return <h1>Hello, universe!</h1>;
+}
+
+export default App;
+```
+
+Kode di atas seharusnya sudah bisa menampilkan "Hello, universe!".
+
+Kita juga dapat membuat komponen lain di file yang sama, misalnya bernama `MyButton`:
+
+```jsx
+function MyButton() {
+  return <button>Aku sebuah tombol</button>;
+}
+```
+
+Kita dapat menyarangkan (_nesting_) `MyButton` ke dalam komponen `App`. Misalnya kita ingin meletakannya di bawah tulisan "Hello, universe!". Namun karena komponen React hanya dapat memiliki satu root (elemen terluar), kita perlu menyarangkan keduanya di sebuah elemen, misalnya `<div>`. Untuk markup JSX dengan banyak baris, disarankan menggunakan tanda kurung:
+
+```jsx
+function App() {
+  return (
+    <div>
+      <h1>Hello, universe!</h1>
+      <MyButton />
+    </div>
+  );
+}
+```
+
+Walapun satu file dapat memiliki beberapa komponen, sebaiknya buat file untuk masing-masing komponen. Misalnya pisahkan komponen `MyButton` di file sendiri dengan nama yang sama, yaitu `MyButton.jsx`. Kemudian ekspor dengan `export default` sehingga kita dapat mengimpornya ke `App.jsx`.
 
 # Pengenalan JSX
 
-Perhatikan deklarasi variabel berikut.
+Perhatikan inisialisasi variabel berikut.
 
 ```jsx
-const element = <h1>Hello universe!</h1>;
+const element = <h1>Hello, universe!</h1>;
 ```
 
-Sintaks tag di atas bukan string atau HTML, melainkan JSX.
+Sintaks mirip HTML yang dimasukkan ke variabel `element` di atas bukan string atau HTML, melainkan JSX.
 
 JSX merupakan perluasan sintaks untuk JavaScript. Kita perlu menggunakannya dengan React untuk membangun tampilan UI. JSX mungkin mengingatkan kita tentang bahasa template, seperti Blade (di Laravel), Blazor (di ASP.NET), Thymeleaf (di Spring), dll., tetapi yang ini menggunakan JavaScript.
 
@@ -99,8 +242,8 @@ JSX merupakan perluasan sintaks untuk JavaScript. Kita perlu menggunakannya deng
 Pada contoh berikut, kita mendeklarasikan variabel bernama `name` dan kemudian menggunakannya di dalam JSX dengan membungkusnya dalam kurung kurawal:
 
 ```jsx
-const name = "Indah Mentari";
-const element = <h1>Hello {name}!</h1>;
+const name = "Elon Musk";
+const element = <h1>Hello, {name}!</h1>;
 ```
 
 Kita dapat menempatkan statement JavaScript apapun (yang valid) di dalam kurung kurawal di JSX. Misalnya, `2 + 2`, `user.firstName`, atau `formatName(user)`.
@@ -113,8 +256,8 @@ function formatName(user) {
 }
 
 const user = {
-  firstName: "Indah",
-  lastName: "Mentari",
+  firstName: "Elon",
+  lastName: "Musk",
 };
 
 const element = <h1>Hello, {formatName(user)}!</h1>;
@@ -177,68 +320,6 @@ const element = (
   </div>
 );
 ```
-
-# Rendering element
-
-## Merender element ke dalam DOM
-
-Misalnya ada sebuah `<div>` di file HTML kita:
-
-```html
-<div id="root"></div>
-```
-
-`<div>` itu disebut "element DOM root" karena semua yang ada di dalamnya akan dikelola oleh React DOM.
-
-Aplikasi yang dibuat dengan React biasanya hanya memiliki satu element DOM root. Tapi sebenarnya kita bisa menggunakan element DOM root sebanyak yang kita inginkan.
-
-Untuk merender element React, pertama-tama panggil `ReactDOM.createRoot()` dan jadikan element DOM root sebagai argumentnya, lalu panggil `root.render()` dan jadikan element React sebagai argumentnya:
-
-```jsx
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-const element = <h1>Hello world!</h1>;
-
-root.render(element);
-```
-
-Itu akan menampilkan "Hello world!" di halaman.
-
-## Memperbarui element yang dirender
-
-Element React tidak dapat diubah. Setelah kita membuat element, kita tidak dapat mengubah child atau atributnya.
-
-Salah satu cara untuk memperbarui UI adalah dengan membuat element baru kemudian memanggil `root.render()` dengan argument berupa element baru tersebut.
-
-Perhatikan contoh jam berikut:
-
-```jsx
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-function tambahDetik() {
-  const element = (
-    <div>
-      <h1>Halo!</h1>
-      <h2>Sekarang pukul {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  root.render(element);
-}
-
-setInterval(tambahDetik, 1000);
-```
-
-Kode di atas memanggil `root.render()` setiap detik dari callback `setInterval()`.
-
-> **Catatan**
->
-> Dalam praktiknya, sebagian besar aplikasi React hanya memanggil `root.render()` sekali saja. Pada materi berikutnya kita akan mempelajari penggunaan `useState()`.
-
-## React hanya memperbarui apa yang perlu diperbarui
-
-React DOM membandingkan element dan child-child-nya dengan yang sebelumnya, dan hanya menerapkan pembaruan DOM yang diperlukan untuk membawa DOM ke keadaan yang diinginkan.
-
-Dari contoh sebelumnya, meskipun kita membuat element yang berisi keseluruhan struktur UI pada setiap detik, hanya teks yang isinya telah diubah yang akan diperbarui oleh React DOM.
 
 # Component dan property
 
