@@ -134,7 +134,7 @@ Saat kita menginisialisasi project Vite, kita akan diberi template _starter kit_
 
 1. Folder `public`, ini adalah folder statis, artinya file-file di dalamnya dapat diakses langsung dari URL. Misalnya file `vite.svg` dapat diakses langsung melalui `http://localhost:5173/vite.svg`.
 
-2. Folder `src`, kita akan fokus ke folder ini, karena file-file di folder inilah yang akan **sering kita ubah**, di sinilah kita akan membuat component-component React.
+2. Folder `src`, kita akan fokus ke folder ini, karena file-file di **folder inilah yang akan sering kita ubah**, di sinilah kita akan membuat component-component React.
 
 3. File `.eslintrc.cjs`, yaitu konfigurasi ESLint, ESLint adalah alat untuk memeriksa kesalahan pada kode kita.
 
@@ -148,7 +148,7 @@ Saat kita menginisialisasi project Vite, kita akan diberi template _starter kit_
 
 ## Menjalankan aplikasi Vite
 
-Jika kita membuka file `package.json`, kita akan melihat beberapa dependensi. Perintah `pnpm create vite` tidak secara otomatis mendownload semua dependensi tersebut.
+Jika kita membuka file `package.json`, kita akan melihat beberapa dependensi di properti `dependencies` dan `devDependencies`. Perintah `pnpm create vite` tadi tidak secara otomatis mendownload semua dependensi tersebut.
 
 Kita perlu mendownload semua dependensi tersebut dengan perintah:
 
@@ -190,7 +190,7 @@ function App() {
 }
 ```
 
-Komponen `App` perlu diekspor karena komponen tersebut perlu diimpor oleh file `main.jsx` untuk ditampilkan:
+Komponen `App` perlu diekspor karena komponen tersebut diimpor oleh file `main.jsx` untuk ditampilkan:
 
 ```jsx
 function App() {
@@ -210,7 +210,7 @@ function MyButton() {
 }
 ```
 
-Kita dapat menyarangkan (_nesting_) `MyButton` ke dalam komponen `App`. Misalnya kita ingin meletakannya di bawah tulisan "Hello, universe!". Namun karena komponen React hanya dapat memiliki satu root (elemen terluar), kita perlu menyarangkan keduanya di sebuah elemen, misalnya `<div>`. Untuk markup JSX dengan banyak baris, disarankan menggunakan tanda kurung:
+Kita dapat menyarangkan (_nesting_) `MyButton` ke dalam komponen `App`. Misalnya kita ingin meletakannya di bawah tulisan "Hello, universe!". Namun karena komponen React hanya dapat memiliki satu root (elemen terluar), kita perlu menyarangkan keduanya ke dalam sebuah elemen, misalnya `<div>`. Untuk markup JSX dengan banyak baris, disarankan menggunakan tanda kurung:
 
 ```jsx
 function App() {
