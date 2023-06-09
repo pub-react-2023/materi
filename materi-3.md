@@ -107,7 +107,7 @@ _Inline style_ adalah pemberian _style_ pada elemen dengan atribut `style` seper
 <button style="background-color: navy; padding: 8px;">Login</button>
 ```
 
-Dalam JSX, _inline style_ berupa objek dengan properti dalam `camelCase` dan valuenya berupa string (atau number jika dalam piksel):
+Dalam JSX, _inline style_ berupa objek dengan properti dalam `camelCase` dan _value_-nya berupa _string_ (atau _number_ jika dalam piksel):
 
 ```jsx
 <button style={{ backgroundColor: "navy", padding: 8 }}>Login</button>
@@ -123,7 +123,7 @@ function LoginButton() {
 }
 ```
 
-Inline style adalah metode yang **sebaiknya dihindari**, karena sangat tidak efisien dan sulit dibaca.
+_Inline style_ adalah metode yang **sebaiknya dihindari**, karena sangat tidak efisien dan sulit dibaca.
 
 ## Tailwind CSS
 
@@ -135,7 +135,7 @@ Tailwind CSS akan dipelajari di pertemuan 10.
 
 _Conditional rendering_ (perenderan bersyarat) maksudnya adalah menampilkan sesuatu dalam JSX berdasarkan syarat/kondisi.
 
-Di React, tidak ada sintaks khusus untuk menulis syarat/kondisi, kondisi ditulis menggunakan sintaks `if...else` seperti JavaScript biasa:
+Di React, tidak ada sintaks khusus untuk menulis syarat/kondisi, kondisi ditulis menggunakan pernyataan `if...else` seperti JavaScript biasa:
 
 ```jsx
 let content;
@@ -170,6 +170,8 @@ Metode yang lebih ringkas adalah menggunakan operator _ternary_ dan _binary logi
 // nullish coalescing
 <div>{user ?? <LoginForm />}</div>
 ```
+
+Metode ringkas di atas **lebih umum digunakan** daripada pernyataan `if...else`.
 
 # _List Rendering_
 
