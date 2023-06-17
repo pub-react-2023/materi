@@ -71,6 +71,21 @@ export default function SolarSystem() {
 }
 ```
 
+_Event handler_ `handleClick` sebenarnya berhasil memperbarui variabel lokal, `index`. Tetapi ada dua hal yang mencegah perubahan itu terlihat:
+
+1. **Variabel lokal tidak bertahan di antara perenderan.** Saat React merender komponen ini untuk kedua kalinya, React merendernya dari awal, tidak mempertimbangkan perubahan apa pun pada variabel lokal.
+2. **Perubahan pada variabel lokal tidak akan memicu perenderan.** React tidak menyadari perlu merender komponen lagi dengan data baru.
+
+Untuk memperbarui komponen dengan data baru, dua hal perlu terjadi:
+
+1. Pertahankan data di antara render.
+2. Picu React untuk merender komponen dengan data baru (re-rendering).
+
+Hook `useState` menyediakan dua hal tersebut:
+
+1. Variabel _state_ untuk mempertahankan data di antara render.
+2. Fungsi _setter_ _state_ untuk memperbarui variabel dan memicu React untuk merender komponen lagi.
+
 ## Menambahkan variabel _state_
 
 Untuk menambahkan variabel _state_, impor `useState` dari React di bagian atas file:
@@ -168,16 +183,21 @@ const [index, setIndex] = useState(0);
 
 ## Memberikan komponen beberapa variabel _state_
 
-Kita dapat memiliki banyak variabel _state_ sebanyak yang kita inginkan dalam satu komponen. Komponen ini memiliki dua variabel status, sebuah angka `index` dan sebuah _boolean_ `showMore` yang diaktifkan saat kita mengklik “Tampilkan detail”:
+Kita dapat memiliki banyak variabel _state_ sebanyak yang kita inginkan dalam satu komponen. Komponen ini memiliki dua variabel _state_, sebuah angka `index` dan sebuah _boolean_ `showMore` yang diaktifkan saat kita mengklik “Tampilkan detail”:
 
 ```jsx
 const planets = ["Mercury", "Venus", "Earth"];
 
 export default function SolarSystem() {
   const [index, setIndex] = useState(0);
+  const [showMore, setShowMore] = useState(false);
 
   function handleClick() {
     setIndex(index + 1);
+  }
+
+  function handleMoreClick() {
+    setShowMore(!showMore);
   }
 
   return (
@@ -193,7 +213,7 @@ export default function SolarSystem() {
 }
 ```
 
-Memiliki beberapa variabel _state_ adalah cara yang baik jika _state_-nya tidak saling terkait, seperti `index` dan `showMore` dalam contoh di atas. Tetapi jika kita menemukan bahwa kita sering mengubah dua variabel status secara bersamaan, mungkin akan lebih mudah untuk menggabungkannya menjadi satu. Misalnya, jika kita memiliki _form_ dengan banyak bidang, akan lebih mudah untuk memiliki satu variabel _state_ yang menyimpan objek daripada variabel _state_ untuk menyimpan nilai per bidang. Baca dokumentasi React: [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure) untuk tips lainnya.
+Memiliki beberapa variabel _state_ adalah cara yang baik jika _state_-nya tidak saling terkait, seperti `index` dan `showMore` dalam contoh di atas. Tetapi jika kita menemukan bahwa kita sering mengubah dua variabel _state_ secara bersamaan, mungkin akan lebih mudah untuk menggabungkannya menjadi satu. Misalnya, jika kita memiliki _form_ dengan banyak bidang, akan lebih mudah untuk memiliki satu variabel _state_ yang menyimpan objek daripada variabel _state_ untuk menyimpan nilai per bidang. Baca dokumentasi React: [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure) untuk tips lainnya.
 
 ## _State_ bersifat terisolasi dan _private_
 
