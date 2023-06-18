@@ -38,6 +38,9 @@
     - [Membuat perubahan lain pada _array_](#membuat-perubahan-lain-pada-array)
   - [Memperbarui objek di dalam _array_](#memperbarui-objek-di-dalam-array)
     - [Tulis logika pembaruan yang ringkas dengan Immer](#tulis-logika-pembaruan-yang-ringkas-dengan-immer)
+- [React Icons](#react-icons)
+  - [Instalasi](#instalasi)
+  - [Penggunaan](#penggunaan)
 
 # Memperbarui _Array_ dalam _State_
 
@@ -690,3 +693,41 @@ Ringkasan:
 - Kita dapat menggunakan sintaks _array spread_ `[...arr, newItem]` untuk membuat _array_ dengan item baru.
 - Kita dapat menggunakan `filter()` dan `map()` untuk membuat _array_ baru dengan item yang difilter atau diubah.
 - Kita dapat menggunakan Immer untuk menjaga agar kode kita tetap ringkas.
+
+# React Icons
+
+React Icons adalah _package_ yang menyertakan ikon-ikon dari berbagai _icon library_ populer, seperti Font Awesome (`fa`), Material Icons (`md`), dll.
+
+## Instalasi
+
+Instal package `react-icons` menggunakan `pnpm`:
+
+```shell
+> pnpm add react-icons
+```
+
+## Penggunaan
+
+1. Cari ikon di [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/).
+
+2. Pilih salah satu dan salin namanya, misalnya `MdHome` (ikon beranda).
+
+   Perhatikan 2 huruf awalnya, yaitu `Md` (singkatan dari Material Design), ini mewakili nama _icon library_.
+
+3. Impor dengan kurung kurawal dari `react-icons/<icon-library>`:
+
+   ```jsx
+   import { MdHome } from "react-icons/md";
+   ```
+
+4. Sarangkan ke komponen yang kita inginkan:
+
+   ```jsx
+   function HomeButton {
+      return (
+        <button>
+          <MdHome>
+        </button>
+      );
+   }
+   ```
