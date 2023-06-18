@@ -1,3 +1,13 @@
+:root {
+  --primary: #0b57d0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #adc6ff;
+  }
+}
+
 body {
   font-family: "Google Sans Text";
   padding: 16px;
@@ -37,7 +47,7 @@ code {
 }
 
 a {
-  color: #0b57d0;
+  color: var(--primary);
   text-decoration: unset;
 }
 

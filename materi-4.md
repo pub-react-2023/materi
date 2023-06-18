@@ -39,7 +39,7 @@
 
 # _State_: Memori Komponen
 
-Komponen seringkali perlu mengubah apa yang ada di layar sebagai hasil interaksi. Mengetik dalam _form_ akan memperbarui nilai bidang input, mengklik "berikutnya" pada _slide_ gambar akan mengubah gambar mana yang ditampilkan, mengklik "beli" akan memasukkan produk ke dalam keranjang belanja. Komponen perlu "mengingat" hal-hal tertentu: nilai input saat ini, gambar saat ini, keranjang belanja. Di React, jenis memori khusus komponen ini disebut _state_.
+Komponen seringkali perlu mengubah apa yang ada di layar sebagai hasil interaksi. Mengetik dalam _form_ akan memperbarui nilai bidang input, mengeklik "berikutnya" pada _slide_ gambar akan mengubah gambar mana yang ditampilkan, mengeklik "beli" akan memasukkan produk ke dalam keranjang belanja. Komponen perlu "mengingat" hal-hal tertentu: nilai input saat ini, gambar saat ini, keranjang belanja. Di React, jenis memori khusus komponen ini disebut _state_.
 
 Kita akan belajar:
 
@@ -50,7 +50,7 @@ Kita akan belajar:
 
 ## Kekurangan variabel biasa
 
-Berikut contoh komponen yang merender nama planet. Mengklik tombol "Berikutnya" akan menampilkan planet berikutnya dengan mengubah `index` ke `1`, lalu `2`, dan seterusnya. Namun, ini **tidak akan berhasil** (silakan dicoba!):
+Berikut contoh komponen yang merender nama planet. Mengeklik tombol "Berikutnya" akan menampilkan planet berikutnya dengan mengubah `index` ke `1`, lalu `2`, dan seterusnya. Namun, ini **tidak akan berhasil** (silakan dicoba!):
 
 ```jsx
 const planets = ["Mercury", "Venus", "Earth"];
@@ -118,7 +118,7 @@ function handleClick() {
 }
 ```
 
-Sekarang mengklik tombol "Berikutnya" akan berhasil mengganti planet saat ini:
+Sekarang mengeklik tombol "Berikutnya" akan berhasil mengganti planet saat ini:
 
 ```jsx
 const planets = ["Mercury", "Venus", "Earth"];
@@ -177,13 +177,13 @@ const [index, setIndex] = useState(0);
 ```
 
 1. **Komponen merender pertama kali**. Karena kita meneruskan `0` ke `useState` sebagai nilai awal untuk `index`, maka akan mengembalikan `[0, setIndex]`. React mengingat bahwa `0` adalah nilai _state_ terbaru saat ini.
-2. **Pengguna memperbarui _state_**. Ketika pengguna mengklik tombol, itu akan memanggil `setIndex(index + 1)`. `index` saat ini adalah `0`, jadi itu sama seperti `setIndex(1)`. Ini memberitahu React untuk mengingat bahwa `index` sekarang adalah `1` dan memicu render lagi.
+2. **Pengguna memperbarui _state_**. Ketika pengguna mengeklik tombol, itu akan memanggil `setIndex(index + 1)`. `index` saat ini adalah `0`, jadi itu sama seperti `setIndex(1)`. Ini memberitahu React untuk mengingat bahwa `index` sekarang adalah `1` dan memicu render lagi.
 3. **Render kedua**. React masih membaca `useState(0)`, tetapi karena React ingat bahwa kita telah mengatur `index` ke `1`, `useState` akan mengembalikan `[1, setIndex]`.
 4. Dan seterusnya!
 
 ## Memberikan komponen beberapa variabel _state_
 
-Kita dapat memiliki banyak variabel _state_ sebanyak yang kita inginkan dalam satu komponen. Komponen ini memiliki dua variabel _state_, sebuah angka `index` dan sebuah _boolean_ `showMore` yang diaktifkan saat kita mengklik “Tampilkan detail”:
+Kita dapat memiliki banyak variabel _state_ sebanyak yang kita inginkan dalam satu komponen. Komponen ini memiliki dua variabel _state_, sebuah angka `index` dan sebuah _boolean_ `showMore` yang diaktifkan saat kita mengeklik “Tampilkan detail”:
 
 ```jsx
 const planets = ["Mercury", "Venus", "Earth"];

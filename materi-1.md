@@ -112,7 +112,7 @@ Sebelum belajar React, kita harus memahami dulu tentang:
 Berbagai cara menjalankan JavaScript:
 
 1. Menggunakan file HTML (tag `<script>`).
-2. Konsol JavaScript di browser, kita dapat membukanya dengan mengklik kanan halaman web dan memilih "Inspect" atau menekan `Ctrl+Shift+J`.
+2. Konsol JavaScript di browser, kita dapat membukanya dengan mengeklik kanan halaman web dan memilih "Inspect" atau menekan `Ctrl+Shift+J`.
 3. Menggunakan runtime JavaScript (Node.js, Deno, Bun, dll.).
 
 Sebelum belajar React, kita harus terlebih dahulu memahami konsep-konsep dasar JavaScript, seperti variabel, tipe data, decision, loop, array, function, dll.

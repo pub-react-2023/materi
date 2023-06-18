@@ -42,7 +42,7 @@
 
 # Memperbarui Objek dalam _State_
 
-_State_ dapat menyimpan segala jenis nilai JavaScript, termasuk objek. Tetapi kita tidak boleh mengubah objek yang kita simpan dalam _state_ React secara langsung. Sebagai gantinya, saat kita ingin memperbarui objek, kita perlu membuat yang baru (atau membuat salinan dari yang sudah ada), lalu meng-_set_ _state_ untuk menggunakan salinan tersebut.
+_State_ dapat menyimpan segala jenis nilai JavaScript, termasuk objek. Tetapi kita tidak boleh mengubah objek yang kita simpan dalam _state_ React secara langsung. Sebagai gantinya, saat kita ingin memperbarui objek, kita perlu membuat yang baru (atau membuat salinan dari yang sudah ada), lalu menge-_set_ _state_ untuk menggunakan salinan tersebut.
 
 Kita akan belajar:
 
@@ -726,7 +726,7 @@ Ringkasan:
 
 - Perlakukan semua _state_ di React sebagai _immutable_ (tidak dapat diubah).
 - Saat kita menyimpan objek dalam _state_, memutasikannya tidak akan memicu _render_ dan hanya akan mengubah _state_ dalam "_snapshot_" _render_ sebelumnya.
-- Jangan memutasi objek, melainkan kita buat versi _baru_ darinya, dan picu _render_ ulang dengan meng-_set_ _state_ ke objek tersebut.
+- Jangan memutasi objek, melainkan kita buat versi _baru_ darinya, dan picu _render_ ulang dengan menge-_set_ _state_ ke objek tersebut.
 - Kita dapat menggunakan sintaks _object spread_ `{...obj, something: 'newValue'}` untuk membuat salinan objek.
 - Sintaks _spread_ bersifat _shallow_ (dangkal): ini hanya menyalin sedalam satu tingkat.
 - Untuk memperbarui objek bersarang, kita perlu membuat salinan dari tempat yang kita perbarui.

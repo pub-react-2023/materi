@@ -215,4 +215,4 @@ function MyButton() {
 }
 ```
 
-Perhatikan, `onClick={handleClick}` pada contoh di atas tidak terdapat tanda kurung di akhir nama _function_. Menambahkan tanda kurung di akhir artinya memanggil _function_ tersebut. Kita hanya perlu _meneruskannya_ (menjadikannya nilai atribut). React akan memanggil _event handler_ tersebut ketika _event_ terjadi, yaitu saat pengguna mengklik tombol.
+Perhatikan, `onClick={handleClick}` pada contoh di atas tidak terdapat tanda kurung di akhir nama _function_. Menambahkan tanda kurung di akhir artinya memanggil _function_ tersebut. Kita hanya perlu _meneruskannya_ (menjadikannya nilai atribut). React akan memanggil _event handler_ tersebut ketika _event_ terjadi, yaitu saat pengguna mengeklik tombol.
