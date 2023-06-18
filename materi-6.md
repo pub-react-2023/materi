@@ -242,17 +242,17 @@ export default function ShapeEditor() {
   function handleClick() {
     const nextShapes = shapes.map((shape) => {
       if (shape.type === "square") {
-        // No change
+        // Tidak ada perubahan
         return shape;
       } else {
-        // Return a new circle 50px below
+        // Kembalikan lingkaran baru 50px di bawah
         return {
           ...shape,
           y: shape.y + 50,
         };
       }
     });
-    // Re-render with the new array
+    // Render ulang dengan array baru
     setShapes(nextShapes);
   }
 

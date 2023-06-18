@@ -49,7 +49,7 @@ Silabus berikut dimaksudkan untuk membagi dan mengurutkan materi berdasarkan per
 | 3         | _Styling_, _Conditional & List Rendering_, dan Merespons _Event_ |
 | 4         | Konsep _State_ dalam React                                       |
 | 5         | Memperbarui Objek dalam _State_                                  |
-| 6         | Memperbarui _Array_ dalam _State_                                |
+| 6         | Memperbarui _Array_ dalam _State_ dan React Icons                |
 | 7         | _Sharing_ Data Antarkomponen Menggunakan _Props_                 |
 | 8         | _Routing_ Menggunakan React Router dan _Deployment_ (Vercel)     |
 | **9**     | **UTS**                                                          |
