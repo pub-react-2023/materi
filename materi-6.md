@@ -1,4 +1,4 @@
-# **Materi 5: Memperbarui _Array_ dalam _State_**
+# **Materi 6: Memperbarui _Array_ dalam _State_**
 
 # Silabus
 
@@ -25,7 +25,7 @@
 
 # Daftar isi
 
-- [**Materi 5: Memperbarui _Array_ dalam _State_**](#materi-5-memperbarui-array-dalam-state)
+- [**Materi 6: Memperbarui _Array_ dalam _State_**](#materi-6-memperbarui-array-dalam-state)
 - [Silabus](#silabus)
 - [Daftar isi](#daftar-isi)
 - [Memperbarui _Array_ dalam _State_](#memperbarui-array-dalam-state)
