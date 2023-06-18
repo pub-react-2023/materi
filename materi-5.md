@@ -29,7 +29,7 @@
 - [Silabus](#silabus)
 - [Daftar isi](#daftar-isi)
 - [Memperbarui Objek dalam _State_](#memperbarui-objek-dalam-state)
-  - [Memahami tentang mutasi](#memahami-tentang-mutasi)
+  - [Apa itu mutasi?](#apa-itu-mutasi)
   - [Perlakukan _state_ sebagai _read-only_](#perlakukan-state-sebagai-read-only)
     - [Mutasi lokal tidak menyebabkan masalah](#mutasi-lokal-tidak-menyebabkan-masalah)
   - [Menyalin objek dengan sintaks _spread_](#menyalin-objek-dengan-sintaks-spread)
@@ -47,11 +47,11 @@ _State_ dapat menyimpan segala jenis nilai JavaScript, termasuk objek. Tetapi ki
 Kita akan belajar:
 
 - Cara memperbarui objek dengan benar dalam _state_ React
-- Cara memperbarui objek bersarang tanpa memutasinya
+- Cara memperbarui objek bersarang tanpa memutasinya (mengubah isinya)
 - Apa itu _immutability_ (kekekalan), dan cara agar tidak merusaknya
 - Cara membuat penyalinan objek tanpa penulisan ulang dengan Immer
 
-## Memahami tentang mutasi
+## Apa itu mutasi?
 
 Kita dapat menyimpan segala jenis nilai JavaScript dalam _state_.
 
@@ -70,16 +70,16 @@ _State_ `x` berubah dari `0` menjadi `5`, tetapi _angka `0` itu sendiri_ tidak b
 Sekarang pertimbangkan sebuah objek dalam _state_:
 
 ```js
-const [posisi, setPosition] = useState({ x: 0, y: 0 });
+const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
 Secara teknis, dimungkinkan untuk mengubah isi dari _objek itu sendiri_. **Ini disebut mutasi:**
 
 ```js
-posisi.x = 5;
+position.x = 5;
 ```
 
-Namun, meskipun objek dalam _state_ React secara teknis dapat diubah, kita harus memperlakukannya **seolah-olah** tidak dapat diubah (seperti angka, _boolean_, dan _string_). Jangan memutasikannya, melainkan kita harus selalu menggantinya.
+Namun, meskipun objek dalam _state_ React secara teknis bersifat _mutable_ (dapat diubah), kita harus memperlakukannya **seolah-olah** _immutable_ (tidak dapat diubah), seperti angka, _boolean_, dan _string_. Jangan memutasikannya, melainkan kita harus selalu menggantinya.
 
 ## Perlakukan _state_ sebagai _read-only_
 
@@ -207,7 +207,7 @@ position.x = e.clientX;
 position.y = e.clientY;
 ```
 
-Sedangkan kode seperti berikut **tidak akan menyebabkan masalah** karena kita mengubah objek baru yang _baru saja kita buat_:
+Sedangkan kode seperti berikut **tidak akan menyebabkan masalah** karena kita memutasi objek baru yang _baru saja kita buat_:
 
 ```js
 const nextPosition = {};
@@ -601,13 +601,13 @@ let obj3 = {
 };
 ```
 
-Jika kita mengubah `obj3.artwork.city`, itu akan memengaruhi `obj2.artwork.city` dan `obj1.city`. Ini karena `obj3.artwork`, `obj2.artwork`, dan `obj1` adalah objek yang sama. Ini sulit dilihat ketika kita menganggap objek sebagai "bersarang". Sebaliknya, mereka adalah objek terpisah yang "menunjuk" satu sama lain dengan properti.
+Jika kita memutasi `obj3.artwork.city`, itu akan memengaruhi `obj2.artwork.city` dan `obj1.city`. Ini karena `obj3.artwork`, `obj2.artwork`, dan `obj1` adalah objek yang sama. Ini sulit dilihat ketika kita menganggap objek sebagai "bersarang". Sebaliknya, mereka adalah objek terpisah yang "menunjuk" satu sama lain dengan properti.
 
 </blockquote>
 
 ### Tulis logika pembaruan yang ringkas dengan Immer
 
-Jika _state_ kita bersarang mendalam, kita mungkin ingin mempertimbangkan untuk [meratakannya.](https://react.dev/learn/choosing-the-state-structure#avoid-deeply-nested-state) Namun, jika kita tidak ingin mengubah struktur _state_ , kita mungkin lebih memilih pintasan daripada spread bersarang. [Immer](https://github.com/immerjs/use-immer) adalah library populer yang memungkinkan kita menulis menggunakan sintaksis yang nyaman namun bermutasi dan mengurus pembuatan salinannya untuk kita. Dengan Immer, kode yang kita tulis terlihat seperti "melanggar aturan" dan memutasi objek:
+Jika _state_ kita bersarang mendalam, kita mungkin ingin mempertimbangkan untuk [meratakannya.](https://react.dev/learn/choosing-the-state-structure#avoid-deeply-nested-state) Namun, jika kita tidak ingin mengubah struktur _state_ , kita mungkin lebih memilih pintasan daripada spread bersarang. [Immer](https://github.com/immerjs/use-immer) adalah library populer yang memungkinkan kita menulis menggunakan sintaksis yang nyaman namun memutasi dan mengurus pembuatan salinannya untuk kita. Dengan Immer, kode yang kita tulis terlihat seperti "melanggar aturan" dan memutasi objek:
 
 ```js
 updatePerson((draft) => {
@@ -713,8 +713,8 @@ Perhatikan betapa lebih ringkasnya penulisan _event handler_. Kita dapat mencamp
 Ada beberapa alasan:
 
 - **Debugging:** Jika kita menggunakan `console.log` dan tidak memutasikan _state_, log lama kita tidak akan terpengaruh oleh perubahan _state_ yang lebih baru. Jadi, kita dapat dengan jelas melihat bagaimana _state_ telah berubah di antara pe_render_an.
-- **Pengoptimalan:** [Strategi pengoptimalan](https://react.dev/reference/react/memo) React umumnya bergantung pada melewatkan pekerjaan jika properti atau _state_ sebelumnya sama dengan yang berikutnya. Jika kita tidak pernah mengubah _state_, sangat cepat untuk memeriksa apakah ada perubahan. Jika `prevObj === obj`, kita dapat yakin bahwa tidak ada yang berubah di dalamnya.
-- **Fitur Baru:** Fitur React baru yang kami buat bergantung pada _state_ yang [diperlakukan seperti _snapshot_.](https://react.dev/learn/state-as-a-snapshot) Jika kita mengubah versi _state_ sebelumnya, itu dapat mencegah kita menggunakan fitur baru.
+- **Pengoptimalan:** [Strategi pengoptimalan](https://react.dev/reference/react/memo) React umumnya bergantung pada melewatkan pekerjaan jika properti atau _state_ sebelumnya sama dengan yang berikutnya. Jika kita tidak pernah memutasi _state_, sangat cepat untuk memeriksa apakah ada perubahan. Jika `prevObj === obj`, kita dapat yakin bahwa tidak ada yang berubah di dalamnya.
+- **Fitur Baru:** Fitur React baru yang kami buat bergantung pada _state_ yang [diperlakukan seperti _snapshot_.](https://react.dev/learn/state-as-a-snapshot) Jika kita memutasi versi _state_ sebelumnya, itu dapat mencegah kita menggunakan fitur baru.
 - **Perubahan Persyaratan:** Beberapa fitur aplikasi, seperti mengimplementasikan Undo/Redo, menampilkan riwayat perubahan, atau mengizinkan pengguna me-_reset_ _form_ ke nilai sebelumnya, lebih mudah dilakukan saat tidak ada yang dimutasi. Ini karena kita dapat menyimpan salinan _state_ sebelumnya di memori, dan menggunakannya kembali jika perlu. Jika kita memulai dengan pendekatan mutatif, fitur seperti ini mungkin akan sulit ditambahkan di kemudian hari.
 - **Implementasi Lebih Sederhana:** Karena React tidak bergantung pada mutasi, React tidak perlu melakukan sesuatu yang khusus dengan objek kita. Itu tidak perlu "membajak" propertinya, selalu membungkusnya menjadi Proxy, atau melakukan pekerjaan lain saat inisialisasi seperti yang dilakukan oleh banyak solusi "reaktif". Ini juga mengapa React memungkinkan kita menempatkan objek apa pun ke dalam _state_, tidak peduli seberapa besar, tanpa kinerja tambahan atau jebakan kebenaran.
 
