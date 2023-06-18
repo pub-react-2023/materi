@@ -104,7 +104,7 @@ export default function List() {
           });
         }}
       >
-        Add
+        Tambah
       </button>
       <ul>
         {artists.map((artist) => (
@@ -149,7 +149,7 @@ export default function List() {
           setArtists([...artists, { id: nextId++, name: name }]);
         }}
       >
-        Add
+        Tambah
       </button>
       <ul>
         {artists.map((artist) => (
