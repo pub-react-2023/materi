@@ -42,23 +42,23 @@ Materi ini ditujukan untuk pemula yang sedang belajar React dan kurang terbiasa 
 
 Silabus berikut dimaksudkan untuk membagi dan mengurutkan materi berdasarkan pertemuan dalam pelatihan React di [Program Beasiswa PUB](https://www.pubpasim.org/).
 
-| Pertemuan | Materi                                                           |
-| --------- | ---------------------------------------------------------------- |
-| 1         | JavaScript modern, Node.js, `npm`, dan `pnpm`                    |
-| 2         | React, Vite, Komponen, JSX, dan Meneruskan _Props_               |
-| 3         | _Styling_, _Conditional & List Rendering_, dan Merespons _Event_ |
-| 4         | Konsep _State_ dalam React                                       |
-| 5         | Memperbarui Objek dalam _State_                                  |
-| 6         | Memperbarui _Array_ dalam _State_ dan React Icons                |
-| 7         | _Sharing_ Data Antarkomponen Menggunakan _Props_                 |
-| 8         | _Routing_ Menggunakan React Router dan _Deployment_ (Vercel)     |
-| **9**     | **UTS**                                                          |
-| 10        | Tailwind CSS                                                     |
-| 11        | `useReducer()`                                                   |
-| 12        | `useContext()`                                                   |
-| 13        | `useRef()` dan `useEffect()`                                     |
-| 14        | REST API (Express), CRUD, dan deployment (Vercel)                |
-| 15        | Basis data (Supabase, PostgreSQL) dan `.env`                     |
-| 16        | Otentikasi (JWT, cookies, dan hash kata sandi)                   |
-| 17        | TypeScript                                                       |
-| **18**    | **_Projekan_**                                                   |
+| Pertemuan | Materi                                                                   |
+| --------- | ------------------------------------------------------------------------ |
+| 1         | JavaScript modern, Node.js, `npm`, dan `pnpm`                            |
+| 2         | React, Vite, Komponen, JSX, dan Meneruskan _Props_                       |
+| 3         | _Styling_, _Conditional & List Rendering_, dan Merespons _Event_         |
+| 4         | Konsep _State_ dalam React dan _Sharing_ Data Antarkomponen (_Props_)    |
+| 5         | Memperbarui Objek dalam _State_                                          |
+| 6         | Memperbarui _Array_ dalam _State_ dan React Icons                        |
+| 7         | Filter & Pencarian, _Sorting_, _Pagination_, _Editing_, dan _Formatting_ |
+| 8         | _Routing_ Menggunakan React Router dan _Deployment_ (Vercel)             |
+| **9**     | **UTS**                                                                  |
+| 10        | Tailwind CSS                                                             |
+| 11        | `useReducer()`                                                           |
+| 12        | `useContext()`                                                           |
+| 13        | `useRef()` dan `useEffect()`                                             |
+| 14        | REST API (Express), CRUD, dan deployment (Vercel)                        |
+| 15        | Basis data (Supabase, PostgreSQL) dan `.env`                             |
+| 16        | Otentikasi (JWT, cookies, dan hash kata sandi)                           |
+| 17        | TypeScript                                                               |
+| **18**    | **_Projekan_**                                                           |

@@ -1,32 +1,8 @@
 # **Materi 3: _Style_ dalam JSX, _Conditional & List Rendering_, dan Menanggapi _Event_**
 
-# Silabus
-
-| Pertemuan | Materi                                                           |
-| --------- | ---------------------------------------------------------------- |
-| 1         | JavaScript, Node.js, `npm`, dan `pnpm`                           |
-| 2         | React, Vite, komponen, dan JSX                                   |
-| 3         | Menambahkan style (CSS) dan menampilkan data (kurung kurawal)    |
-| 4         | Render kondisional (operator ternary dan logical)                |
-| 5         | Render list (method `map()` array)                               |
-| 6         | Event dan `useState()`                                           |
-| 7         | Sharing data antarkomponen (`props`)                             |
-| 8         | React Router dan deployment (Vercel)                             |
-| **9**     | **UTS**                                                          |
-| 10        | Tailwind CSS                                                     |
-| 11        | Memperdalam event dan `useState()` (memperbarui objek dan array) |
-| 12        | `useReducer()` dan `useContext()`                                |
-| 13        | `useRef()` dan `useEffect()`                                     |
-| 14        | REST API (Express), CRUD, dan deployment (Vercel)                |
-| 15        | Basis data (Supabase, PostgreSQL) dan `.env`                     |
-| 16        | Otentikasi (JWT, cookies, dan hash kata sandi)                   |
-| 17        | TypeScript                                                       |
-| **18**    | **Projekan**                                                     |
-
 # Daftar isi
 
 - [**Materi 3: _Style_ dalam JSX, _Conditional \& List Rendering_, dan Menanggapi _Event_**](#materi-3-style-dalam-jsx-conditional--list-rendering-dan-menanggapi-event)
-- [Silabus](#silabus)
 - [Daftar isi](#daftar-isi)
 - [_Style_ (CSS) dalam JSX](#style-css-dalam-jsx)
   - [_External stylesheet_](#external-stylesheet)

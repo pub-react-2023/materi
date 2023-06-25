@@ -1,32 +1,8 @@
 # **Materi 4: Konsep _State_ dalam React**
 
-# Silabus
-
-| Pertemuan | Materi                                                            |
-| --------- | ----------------------------------------------------------------- |
-| 1         | JavaScript, Node.js, `npm`, dan `pnpm`                            |
-| 2         | React, Vite, Komponen, JSX, dan Meneruskan _Props_                |
-| 3         | _Styling_, _Conditional & List Rendering_, dan Menanggapi _Event_ |
-| 4         | Konsep _State_ dalam React                                        |
-| 5         | Memperbarui Nilai dalam _State_                                   |
-| 6         | _Sharing_ Data Antarkomponen Menggunakan Props                    |
-| 7         | _Routing_ Menggunakan React Router                                |
-| 8         | _Deployment_ (Vercel)                                             |
-| **9**     | **UTS**                                                           |
-| 10        | Tailwind CSS                                                      |
-| 11        | Memperdalam event dan `useState()` (memperbarui objek dan array)  |
-| 12        | `useReducer()` dan `useContext()`                                 |
-| 13        | `useRef()` dan `useEffect()`                                      |
-| 14        | REST API (Express), CRUD, dan deployment (Vercel)                 |
-| 15        | Basis data (Supabase, PostgreSQL) dan `.env`                      |
-| 16        | Otentikasi (JWT, cookies, dan hash kata sandi)                    |
-| 17        | TypeScript                                                        |
-| **18**    | **Projekan**                                                      |
-
 # Daftar isi
 
 - [**Materi 4: Konsep _State_ dalam React**](#materi-4-konsep-state-dalam-react)
-- [Silabus](#silabus)
 - [Daftar isi](#daftar-isi)
 - [_State_: Memori Komponen](#state-memori-komponen)
   - [Kekurangan variabel biasa](#kekurangan-variabel-biasa)
